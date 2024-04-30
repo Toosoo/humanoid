@@ -14,9 +14,6 @@ export function Model(props) {
             geometry={nodes.Cylinder002_1.geometry}
             material={materials.HEAD}
             />
-           
-              
-
           <mesh
             castShadow
             receiveShadow

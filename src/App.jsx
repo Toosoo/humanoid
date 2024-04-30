@@ -2,17 +2,26 @@ import { useState } from "react";
 import { Stage, Gltf, OrbitControls, Environment, Point, Sparkles } from "@react-three/drei";
 import { Bloom, DepthOfField, EffectComposer, Noise, Vignette, BrightnessContrast } from "@react-three/postprocessing";
 import { Model } from "./Model";
+import { useControls } from 'leva'
 
 function App() {
+
+  const { bloomHeight,luminanceThreshold,luminanceSmoothing,brightness,contrast } = useControls({ 
+    bloomHeight:{min:0, max:700, value:500},
+    luminanceThreshold :{min:0, max:1, value:0.5},
+    luminanceSmoothing :{min:0, max:1, value:0.1},
+    brightness:{min:0, max:1, value:0},
+    contrast:{min:0, max:1, value:.9}
+   })
   return (
     <>
       <color attach="background" args={["black"]} />
       <EffectComposer>
-        {/* <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} />
-        <Bloom luminanceThreshold={0} luminanceSmoothing={0.1} height={500} />
-        <BrightnessContrast brightness={0} contrast={0.9} />
-        <Noise opacity={0.02} />
-        <Vignette eskil={false} offset={0.1} darkness={1.1} /> */}
+        <Bloom luminanceThreshold={luminanceThreshold} luminanceSmoothing={luminanceSmoothing} height={bloomHeight} />
+        <BrightnessContrast brightness={brightness} contrast={contrast} />
+         {/* <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} /> */}
+        {/* <Noise opacity={0.02} /> */}
+        {/* <Vignette eskil={false} offset={0.1} darkness={1.1} /> */}
 
         <Model />
         <Environment preset="city" />
