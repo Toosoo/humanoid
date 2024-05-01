@@ -11,7 +11,7 @@ function App() {
     luminanceThreshold :{min:0, max:1, value:0.5},
     luminanceSmoothing :{min:0, max:1, value:0.1},
     brightness:{min:0, max:1, value:0},
-    contrast:{min:0, max:1, value:.9}
+    contrast:{min:0, max:.99, value:.9}
    })
   return (
     <>
